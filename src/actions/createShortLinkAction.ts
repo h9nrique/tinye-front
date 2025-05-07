@@ -2,7 +2,7 @@
 
 import { CreateShortLinkSchema } from "@/components/HomePage/CreateLinkInput";
 import { api } from "@/libs/axios";
-import { Link } from "@/types/links/LinkType";
+import { LinkType } from "@/types/links/LinkType";
 import {
   ErrorResponse,
   responseError,
@@ -13,7 +13,7 @@ import { AxiosError } from "axios";
 export async function createShortLinkAction(data: CreateShortLinkSchema) {
   try {
     const response = await api.post("/link", data);
-    return responseSuccess<Link>(response);
+    return responseSuccess<LinkType>(response);
   } catch (error) {
     const axiosError = error as AxiosError<ErrorResponse>;
     return responseError<ErrorResponse>(axiosError);

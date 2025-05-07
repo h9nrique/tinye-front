@@ -1,4 +1,4 @@
-export type Link = {
+export type LinkType = {
   id: string;
   shortLink: string;
   originalLink: string;

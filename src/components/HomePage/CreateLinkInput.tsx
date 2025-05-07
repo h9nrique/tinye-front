@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
@@ -8,8 +6,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createShortLinkAction } from "@/actions/createShortLinkAction";
 import { ErrorResponse, HttpResponseType } from "@/types/ResponseTypes";
-import { Link } from "@/types/links/LinkType";
-import { useStoredLinks } from "@/hooks/useStoredLinks";
+import { LinkType } from "@/types/links/LinkType";
 
 const createShortLinkSchema = z.object({
   originalLink: z.string().url("URL inválida"),
@@ -17,10 +14,12 @@ const createShortLinkSchema = z.object({
 
 export type CreateShortLinkSchema = z.infer<typeof createShortLinkSchema>;
 
-export default function CreateLinkInput() {
-  const { addLink } = useStoredLinks();
-
-  const { handleSubmit, register } = useForm<CreateShortLinkSchema>({
+export default function CreateLinkInput({
+  addLink,
+}: {
+  addLink: (links: LinkType) => void;
+}) {
+  const { handleSubmit, register, reset } = useForm<CreateShortLinkSchema>({
     resolver: zodResolver(createShortLinkSchema),
   });
 
@@ -35,8 +34,9 @@ export default function CreateLinkInput() {
     }
 
     if (response.type === HttpResponseType.SUCCESS) {
-      const responseData = response.data as Link;
+      const responseData = response.data as LinkType;
       addLink(responseData);
+      reset();
       console.log("Link encurtado com sucesso:", responseData);
     }
   };
@@ -44,14 +44,14 @@ export default function CreateLinkInput() {
   return (
     <form
       onSubmit={handleSubmit(createShortLink)}
-      className="flex flex-row w-full gap-2 justify-center items-center"
+      className="flex flex-col md:flex-row w-full gap-2 justify-center items-center mb-4"
     >
       <Input
         placeholder="Cole seu link para encurtar"
         className="p-6 max-h-12"
         {...register("originalLink")}
       />
-      <Button className="p-6 px-8">Encurtar Link</Button>
+      <Button className="p-6 px-8 w-full md:w-auto">Encurtar Link</Button>
     </form>
   );
 }

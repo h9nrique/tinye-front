@@ -19,26 +19,14 @@ export function useStoredLinks() {
     }
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
-  }, [links]);
-
   const addLink = (newLink: Link) => {
-    setLinks((prev) => [newLink, ...prev]);
-  };
-
-  const removeLink = (id: string) => {
-    setLinks((prev) => prev.filter((link) => link.id !== id));
-  };
-
-  const clearLinks = () => {
-    setLinks([]);
+    const updatedLinks = [...links, newLink];
+    setLinks(updatedLinks);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedLinks));
   };
 
   return {
     links,
     addLink,
-    removeLink,
-    clearLinks,
   };
 }
