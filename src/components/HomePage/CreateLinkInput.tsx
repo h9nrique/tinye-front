@@ -26,8 +26,6 @@ export default function CreateLinkInput({
   const createShortLink = async (data: CreateShortLinkSchema) => {
     const response = await createShortLinkAction(data);
 
-    console.log("Response:", response);
-
     if (response.type === HttpResponseType.ERROR) {
       const responseData = response.data as ErrorResponse;
       console.log("Erro ao encurtar o link:", responseData);
