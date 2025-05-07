@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { Link } from "@/types/links/LinkType";
+import { LinkType } from "@/types/links/LinkType";
 
 const STORAGE_KEY = "user_links";
 
 export function useStoredLinks() {
-  const [links, setLinks] = useState<Link[]>([]);
+  const [links, setLinks] = useState<LinkType[]>([]);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
@@ -19,7 +19,7 @@ export function useStoredLinks() {
     }
   }, []);
 
-  const addLink = (newLink: Link) => {
+  const addLink = (newLink: LinkType) => {
     const updatedLinks = [...links, newLink];
     setLinks(updatedLinks);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedLinks));
