@@ -17,7 +17,7 @@ export default function LinkCard({ link }: { link: LinkType }) {
         setCopied(true);
         setTimeout(() => {
           setCopied(false);
-        }, 4000);
+        }, 3000);
       })
       .catch((err) => {
         console.error("Erro ao copiar texto:", err);
@@ -29,7 +29,7 @@ export default function LinkCard({ link }: { link: LinkType }) {
 
   return (
     <div className="flex flex-col md:flex-row justify-between md:items-center bg-white mb-2 p-4 border-2 border-input rounded-md overflow-hidden gap-y-2">
-      <div className="flex flex-row items-start md:items-center gap-x-4">
+      <div className="flex flex-row items-center gap-x-4">
         <FaviconLinks originalLink={link.originalLink} />
         <div className="flex flex-col overflow-hidden">
           <Link
@@ -50,7 +50,11 @@ export default function LinkCard({ link }: { link: LinkType }) {
           </Link>
         </div>
       </div>
-      <Button onClick={copyToClipboard} className="w-full md:w-auto">
+      <Button
+        onClick={copyToClipboard}
+        className="w-full md:w-auto"
+        disabled={copied}
+      >
         {copied ? (
           "Copiado!"
         ) : (

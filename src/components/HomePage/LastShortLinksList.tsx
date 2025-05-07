@@ -13,7 +13,7 @@ export default function LastShortLinksList({ links }: { links: LinkType[] }) {
         <p className="text-center text-gray-500">Nenhum link criado ainda.</p>
       )}
 
-      {links.map((link) => {
+      {links.slice(0, 9).map((link) => {
         return <LinkCard key={link.id} link={link} />;
       })}
     </div>
