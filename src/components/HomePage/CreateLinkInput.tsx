@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { createShortLinkAction } from "@/actions/createShortLinkAction";
 import { ErrorResponse, HttpResponseType } from "@/types/ResponseTypes";
 import { LinkType } from "@/types/links/LinkType";
+import { toast } from "sonner";
 
 const createShortLinkSchema = z.object({
   originalLink: z.string().url("URL inválida"),
@@ -19,7 +20,12 @@ export default function CreateLinkInput({
 }: {
   addLink: (links: LinkType) => void;
 }) {
-  const { handleSubmit, register, reset } = useForm<CreateShortLinkSchema>({
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { isSubmitting },
+  } = useForm<CreateShortLinkSchema>({
     resolver: zodResolver(createShortLinkSchema),
   });
 
@@ -28,14 +34,16 @@ export default function CreateLinkInput({
 
     if (response.type === HttpResponseType.ERROR) {
       const responseData = response.data as ErrorResponse;
-      console.log("Erro ao encurtar o link:", responseData);
+      toast.error("Erro ao encurtar seu link", {
+        description: responseData.data,
+      });
     }
 
     if (response.type === HttpResponseType.SUCCESS) {
       const responseData = response.data as LinkType;
       addLink(responseData);
       reset();
-      console.log("Link encurtado com sucesso:", responseData);
+      toast.success("Link criado com sucesso");
     }
   };
 
@@ -49,7 +57,9 @@ export default function CreateLinkInput({
         className="p-6 max-h-12"
         {...register("originalLink")}
       />
-      <Button className="p-6 px-8 w-full md:w-auto">Encurtar Link</Button>
+      <Button className="p-6 px-8 w-full md:w-auto" disabled={isSubmitting}>
+        Encurtar Link
+      </Button>
     </form>
   );
 }

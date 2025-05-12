@@ -3,12 +3,16 @@ import LinkDoesNotExist from "@/components/exceptions/LinkDoesNotExist";
 import { LinkType } from "@/types/links/LinkType";
 import { ErrorResponse, HttpResponseType } from "@/types/ResponseTypes";
 import { redirect } from "next/navigation";
+import { toast } from "sonner";
 
 const handleRedirect = async (id: string) => {
   const response = await handleRedirectAction(id);
 
   if (response.type === HttpResponseType.ERROR) {
     const responseData = response.data as ErrorResponse;
+    toast.error("Erro ao encurtar seu link", {
+      description: responseData.data,
+    });
   }
 
   if (response.type === HttpResponseType.SUCCESS) {
