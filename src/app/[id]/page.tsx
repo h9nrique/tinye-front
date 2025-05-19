@@ -10,9 +10,6 @@ const handleRedirect = async (id: string) => {
 
   if (response.type === HttpResponseType.ERROR) {
     const responseData = response.data as ErrorResponse;
-    toast.error("Erro ao encurtar seu link", {
-      description: responseData.data,
-    });
   }
 
   if (response.type === HttpResponseType.SUCCESS) {
