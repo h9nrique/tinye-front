@@ -15,6 +15,6 @@ export async function handleRedirectAction(id: string) {
     return responseSuccess<LinkType>(response);
   } catch (error) {
     const axiosError = error as AxiosError<ErrorResponse>;
-    return responseError<ErrorResponse>(axiosError);
+    return responseError(axiosError);
   }
 }

@@ -16,6 +16,6 @@ export async function createShortLinkAction(data: CreateShortLinkSchema) {
     return responseSuccess<LinkType>(response);
   } catch (error) {
     const axiosError = error as AxiosError<ErrorResponse>;
-    return responseError<ErrorResponse>(axiosError);
+    return responseError(axiosError);
   }
 }

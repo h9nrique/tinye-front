@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createShortLinkAction } from "@/actions/createShortLinkAction";
-import { ErrorResponse, HttpResponseType } from "@/types/ResponseTypes";
+import { HttpResponseType } from "@/types/ResponseTypes";
 import { LinkType } from "@/types/links/LinkType";
 import { toast } from "sonner";
 
@@ -33,9 +33,8 @@ export default function CreateLinkInput({
     const response = await createShortLinkAction(data);
 
     if (response.type === HttpResponseType.ERROR) {
-      const responseData = response.data as ErrorResponse;
       toast.error("Erro ao encurtar seu link", {
-        description: responseData.data,
+        description: response.errorMessage,
       });
     }
 

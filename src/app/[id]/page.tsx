@@ -1,15 +1,14 @@
 import { handleRedirectAction } from "@/actions/handleRedirectAction";
 import LinkDoesNotExist from "@/components/exceptions/LinkDoesNotExist";
 import { LinkType } from "@/types/links/LinkType";
-import { ErrorResponse, HttpResponseType } from "@/types/ResponseTypes";
+import { HttpResponseType } from "@/types/ResponseTypes";
 import { redirect } from "next/navigation";
-import { toast } from "sonner";
 
 const handleRedirect = async (id: string) => {
   const response = await handleRedirectAction(id);
 
   if (response.type === HttpResponseType.ERROR) {
-    const responseData = response.data as ErrorResponse;
+    return;
   }
 
   if (response.type === HttpResponseType.SUCCESS) {

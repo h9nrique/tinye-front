@@ -6,19 +6,29 @@ export const HttpResponseType = {
 } as const;
 
 export type ErrorResponse = {
-  type: string;
-  status: string;
-  data: string;
+  type: typeof HttpResponseType.ERROR;
+  httpStatusCode: number;
+  httpStatus: string;
+  errorMessage: string;
+  errorDescription: string;
 };
 
 export function responseSuccess<T>(response: AxiosResponse<T>) {
-  return { type: "success", status: response.status, data: response.data };
+  return {
+    type: HttpResponseType.SUCCESS,
+    status: response.status,
+    data: response.data,
+  };
 }
 
-export function responseError<T>(error: AxiosError<T>) {
+export function responseError(error: AxiosError) {
+  const data = error.response?.data as ErrorResponse;
+
   return {
-    type: "error",
-    status: error.response?.status ?? 500,
-    data: error.response?.data ?? "Erro desconhecido",
+    type: HttpResponseType.ERROR,
+    httpStatusCode: data?.httpStatusCode ?? 500,
+    httpStatus: data?.httpStatus ?? "Internal Server Error",
+    errorMessage: data?.errorMessage ?? "Erro inesperado",
+    errorDescription: data?.errorDescription ?? "Tente novamente mais tarde",
   };
 }
