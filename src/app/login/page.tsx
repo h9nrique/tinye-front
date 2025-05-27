@@ -8,7 +8,7 @@ export default async function Login() {
   const cookieStorage = await cookies();
   const token = cookieStorage.get("token")?.value;
 
-  if (token) return redirect("/account");
+  if (token) return redirect("/profile");
 
   return (
     <Container className="items-center justify-center">

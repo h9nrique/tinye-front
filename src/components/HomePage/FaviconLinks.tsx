@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { FaLink } from "react-icons/fa6";
 

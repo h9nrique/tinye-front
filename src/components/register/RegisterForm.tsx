@@ -40,7 +40,7 @@ export default function RegisterForm() {
 
     if (response.type === HttpResponseType.SUCCESS) {
       toast.success("Conta criada com sucesso!");
-      redirect("/account");
+      redirect("/profile");
     }
   };
 

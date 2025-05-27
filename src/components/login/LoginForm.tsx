@@ -36,7 +36,7 @@ export default function LoginForm() {
 
     if (response.type === HttpResponseType.SUCCESS) {
       toast.success("Login realizado com sucesso!");
-      redirect("/account");
+      redirect("/profile");
     }
   };
 
@@ -77,7 +77,7 @@ export default function LoginForm() {
 
           <Hint>{errors.password && errors.password.message}</Hint>
         </div>
-        <Button className="mt-4 py-6">Criar conta</Button>
+        <Button className="mt-4 py-6">Entrar</Button>
       </form>
     </div>
   );
