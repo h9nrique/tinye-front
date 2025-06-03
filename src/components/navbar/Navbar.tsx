@@ -9,8 +9,8 @@ export default async function Navbar() {
 
   if (token)
     return (
-      <nav className="w-full py-2">
-        <div className="px-4 md:px-8 m-auto flex flex-row justify-between">
+      <nav className="w-full py-2 bg-white border-b border-gray-200">
+        <div className="px-4 md:px-8 m-auto flex flex-row justify-between items-center">
           <Link href="/" className="flex gap-x-2 items-center">
             <FaLink className="text-blue-300 mt-1" size={20} />
             <h1 className="text-2xl font-bold text-cyan-950">Tinye.me</h1>
@@ -27,7 +27,7 @@ export default async function Navbar() {
 
   return (
     <nav className="w-full py-2">
-      <div className="px-4 md:px-8 m-auto flex flex-row justify-between">
+      <div className="px-4 md:px-8 m-auto flex flex-row justify-between items-center">
         <Link href="/" className="flex gap-x-2 items-center">
           <FaLink className="text-blue-300 mt-1" size={20} />
           <h1 className="text-2xl font-bold text-cyan-950">Tinye.me</h1>
