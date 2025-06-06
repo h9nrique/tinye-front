@@ -1,8 +1,8 @@
 import React from "react";
 import Container from "@/components/ui/Container";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import LoginForm from "@/components/login/LoginForm";
+import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
 
 export default async function Login() {
   const cookieStorage = await cookies();

@@ -25,7 +25,6 @@ export async function loginAction(data: LoginSchema) {
     return responseSuccess<LoginResponse>(response);
   } catch (error) {
     const axiosError = error as AxiosError<ErrorResponse>;
-    console.error(axiosError);
     return responseError(axiosError);
   }
 }

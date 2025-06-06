@@ -15,9 +15,9 @@ export type ErrorResponse = {
 
 export function responseSuccess<T>(response: AxiosResponse<T>) {
   return {
-    type: HttpResponseType.SUCCESS,
-    status: response.status,
-    data: response.data,
+    type: HttpResponseType?.SUCCESS,
+    status: response?.status ?? 0,
+    data: response?.data,
   };
 }
 
@@ -26,9 +26,9 @@ export function responseError(error: AxiosError) {
 
   return {
     type: HttpResponseType.ERROR,
-    httpStatusCode: data?.httpStatusCode ?? 500,
-    httpStatus: data?.httpStatus ?? "Internal Server Error",
-    errorMessage: data?.errorMessage ?? "Erro inesperado",
+    httpStatusCode: data?.httpStatusCode ?? error.status ?? 500,
+    httpStatus: data?.httpStatus ?? error.cause ?? "Erro desconhecido",
+    errorMessage: data?.errorMessage ?? error.message ?? "Erro inesperado",
     errorDescription: data?.errorDescription ?? "Tente novamente mais tarde",
   };
 }

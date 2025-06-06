@@ -1,9 +1,12 @@
 "use client";
 import Container from "@/components/ui/Container";
 
-// Error boundaries must be Client Components
+type ErrorBoundaryProps = {
+  error: Error;
+  reset: () => void;
+};
 
-export default function Error({ reset }: { reset: () => void }) {
+export default function ErrorBoundary({ error, reset }: ErrorBoundaryProps) {
   return (
     <Container>
       <h2>Algo deu errado!</h2>

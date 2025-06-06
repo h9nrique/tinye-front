@@ -1,16 +1,16 @@
 import React from "react";
-
+import LinkCardProfile from "./LinkCardProfile";
+import { HttpResponseType } from "@/types/ResponseTypes";
 import { getLinksAction } from "@/actions/getLinksAction";
 import { LinkType } from "@/types/links/LinkType";
-import { HttpResponseType } from "@/types/ResponseTypes";
-import LinkCardProfile from "./LinkCardProfile";
+import { errorHandler } from "@/utils/errorHandler";
 
 const getLinks = async () => {
+  // await new Promise((resolve) => setTimeout(resolve, 3000));
   const response = await getLinksAction();
-  // Simulating a delay for demonstration purposes
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-
   if (response.type === HttpResponseType.ERROR) {
+    console.log("error handler");
+    errorHandler(response);
     return [] as LinkType[];
   }
 

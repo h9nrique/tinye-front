@@ -1,10 +1,18 @@
+import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const token = request.cookies.get("token")?.value;
+  const url = new URL(request.url);
 
   if (!token) {
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
+
+  if (url.pathname === "/logout") {
+    const cookieStorage = await cookies();
+    cookieStorage.delete("token");
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
@@ -12,5 +20,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/account/:path*"],
+  matcher: ["/profile/:path*", "/logout"],
 };
