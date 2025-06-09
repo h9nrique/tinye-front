@@ -7,6 +7,7 @@ import DeleteLinkButton from "./DeleteLinkButton";
 import { formatDate } from "@/utils/formatDate";
 import { FaLink } from "react-icons/fa6";
 import { IoIosCalendar } from "react-icons/io";
+import StatusSwitch from "./StatusSwitch";
 
 type LinkCardProfileProps = {
   link: LinkType;
@@ -20,7 +21,14 @@ export default function LinkCardProfile({
   const completeLink = "http://localhost:3000/" + link.shortLink;
 
   return (
-    <div className="flex flex-row items-center bg-white mb-2 p-4 border-2 border-input rounded-md overflow-hidden gap-4">
+    <div
+      className={`flex flex-row items-center bg-white mb-2 p-4 rounded-md overflow-hidden gap-4 ${
+        link.active
+          ? "border-2 border-input"
+          : "border-2 border-transparent opacity-80"
+      } `}
+    >
+      <StatusSwitch link={link} setOrderedLinksList={setOrderedLinksList} />
       <FaviconLinks originalLink={link.originalLink} />
       <div className="flex flex-col w-full">
         <div className="flex flex-col md:flex-row justify-between">
@@ -45,7 +53,7 @@ export default function LinkCardProfile({
             </div>
           </div>
           <div className="gap-x-2 flex">
-            <CopyLinkButton completeLink={completeLink} />
+            <CopyLinkButton completeLink={completeLink} link={link} />
             <DeleteLinkButton
               id={link.id}
               setOrderedLinksList={setOrderedLinksList}

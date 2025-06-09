@@ -5,5 +5,6 @@ export type LinkType = {
   createdAt: string;
   updatedAt: string;
   accessCount: number;
+  active: boolean;
   deleted: boolean;
 };

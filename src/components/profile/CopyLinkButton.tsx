@@ -4,12 +4,17 @@ import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { toast } from "sonner";
 import { FaCopy } from "react-icons/fa6";
+import { LinkType } from "@/types/links/LinkType";
+
+type CopyLinkButtonProps = {
+  link: LinkType;
+  completeLink: string;
+};
 
 export default function CopyLinkButton({
+  link,
   completeLink,
-}: {
-  completeLink: string;
-}) {
+}: CopyLinkButtonProps) {
   const [copied, setCopied] = useState(false);
 
   const copyToClipboard = () => {
@@ -30,7 +35,11 @@ export default function CopyLinkButton({
   };
 
   return (
-    <Button onClick={copyToClipboard} className="md:w-auto" disabled={copied}>
+    <Button
+      onClick={copyToClipboard}
+      className="md:w-auto"
+      disabled={copied || !link.active}
+    >
       {copied ? (
         "Copiado!"
       ) : (

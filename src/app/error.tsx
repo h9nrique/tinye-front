@@ -6,7 +6,7 @@ type ErrorBoundaryProps = {
   reset: () => void;
 };
 
-export default function ErrorBoundary({ error, reset }: ErrorBoundaryProps) {
+export default function ErrorBoundary({ reset }: ErrorBoundaryProps) {
   return (
     <Container>
       <h2>Algo deu errado!</h2>
