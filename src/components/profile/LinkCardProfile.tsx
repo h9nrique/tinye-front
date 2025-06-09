@@ -1,5 +1,3 @@
-"use client";
-
 import { LinkType } from "@/types/links/LinkType";
 import React from "react";
 import FaviconLinks from "../HomePage/FaviconLinks";
@@ -10,7 +8,15 @@ import { formatDate } from "@/utils/formatDate";
 import { FaLink } from "react-icons/fa6";
 import { IoIosCalendar } from "react-icons/io";
 
-export default function LinkCardProfile({ link }: { link: LinkType }) {
+type LinkCardProfileProps = {
+  link: LinkType;
+  setOrderedLinksList: React.Dispatch<React.SetStateAction<LinkType[]>>;
+};
+
+export default function LinkCardProfile({
+  link,
+  setOrderedLinksList,
+}: LinkCardProfileProps) {
   const completeLink = "http://localhost:3000/" + link.shortLink;
 
   return (
@@ -40,8 +46,10 @@ export default function LinkCardProfile({ link }: { link: LinkType }) {
           </div>
           <div className="gap-x-2 flex">
             <CopyLinkButton completeLink={completeLink} />
-            {/* <EditLinkButton /> */}
-            <DeleteLinkButton />
+            <DeleteLinkButton
+              id={link.id}
+              setOrderedLinksList={setOrderedLinksList}
+            />
           </div>
         </div>
         <div className="flex gap-4 items-center text-gray-400">

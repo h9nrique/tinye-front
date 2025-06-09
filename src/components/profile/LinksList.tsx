@@ -1,9 +1,8 @@
-import React from "react";
-import LinkCardProfile from "./LinkCardProfile";
 import { HttpResponseType } from "@/types/ResponseTypes";
 import { getLinksAction } from "@/actions/getLinksAction";
 import { LinkType } from "@/types/links/LinkType";
 import { errorHandler } from "@/utils/errorHandler";
+import LinkListOrdered from "./LinkListOrdered";
 
 const getLinks = async () => {
   const response = await getLinksAction();
@@ -21,14 +20,13 @@ const getLinks = async () => {
 
 export default async function LinksList() {
   const links = await getLinks();
+  const orderedLinks = links?.sort((a, b) => {
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
 
-  return (
-    <div>
-      {links
-        ? links.map((link) => {
-            return <LinkCardProfile key={link.id} link={link} />;
-          })
-        : "Você ainda não tem links"}
-    </div>
+  return orderedLinks ? (
+    <LinkListOrdered orderedLinks={orderedLinks} />
+  ) : (
+    "Você ainda não tem links criados"
   );
 }
