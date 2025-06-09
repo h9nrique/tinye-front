@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import Image from "next/image";
+import React from "react";
 import { FaLink } from "react-icons/fa6";
 
 export default function FaviconLinks({
@@ -8,8 +9,6 @@ export default function FaviconLinks({
 }: {
   originalLink: string;
 }) {
-  const [hasError, setHasError] = useState(false);
-
   const getFavicon = () => {
     try {
       const url = new URL(originalLink);
@@ -21,20 +20,20 @@ export default function FaviconLinks({
 
   const faviconUrl = getFavicon();
 
-  if (!faviconUrl || hasError) {
+  if (faviconUrl)
     return (
-      <div className="w-6 h-6 flex items-center justify-center bg-gray-700 rounded-full">
-        <FaLink className="text-blue-50" size={12} />
-      </div>
+      <Image
+        src={faviconUrl}
+        alt="favicon"
+        className="w-6 h-6"
+        width={24}
+        height={24}
+      />
     );
-  }
 
   return (
-    <img
-      src={faviconUrl}
-      alt="favicon"
-      className="w-6 h-6"
-      onError={() => setHasError(true)}
-    />
+    <div className="w-6 h-6 flex items-center justify-center bg-gray-700 rounded-full">
+      <FaLink className="text-blue-50" size={12} />
+    </div>
   );
 }

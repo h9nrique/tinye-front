@@ -6,7 +6,6 @@ import { LinkType } from "@/types/links/LinkType";
 import { errorHandler } from "@/utils/errorHandler";
 
 const getLinks = async () => {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
   const response = await getLinksAction();
   if (response.type === HttpResponseType.ERROR) {
     console.log("error handler");
