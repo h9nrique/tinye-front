@@ -13,9 +13,11 @@ import { loginAction } from "@/actions/loginAction";
 import { HttpResponseType } from "@/types/ResponseTypes";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";
+import { AiOutlineLoading } from "react-icons/ai";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const {
     register,
@@ -26,12 +28,14 @@ export default function LoginForm() {
   });
 
   const login = async (data: LoginSchema) => {
+    setIsLoading(true);
     const response = await loginAction(data);
 
     if (response.type === HttpResponseType.ERROR) {
       toast.error(response.errorMessage, {
         description: response.errorDescription,
       });
+      setIsLoading(false);
     }
 
     if (response.type === HttpResponseType.SUCCESS) {
@@ -77,7 +81,9 @@ export default function LoginForm() {
 
           <Hint>{errors.password && errors.password.message}</Hint>
         </div>
-        <Button className="mt-4 py-6">Entrar</Button>
+        <Button className="mt-4 py-6" disabled={isLoading}>
+          {isLoading ? <AiOutlineLoading className="animate-spin" /> : "Entrar"}
+        </Button>
       </form>
     </div>
   );

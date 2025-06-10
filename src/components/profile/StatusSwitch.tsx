@@ -21,7 +21,6 @@ export default function StatusSwitch({
   const changeLinkActive = async () => {
     setIsLoading(true);
     const { id } = link;
-    await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate loading delay
     const response = await changeLinkActiveAction({ id });
     if (response.type === HttpResponseType.ERROR) {
       setIsLoading(false);
@@ -53,6 +52,7 @@ export default function StatusSwitch({
       checked={checked}
       onCheckedChange={() => changeLinkActive()}
       disabled={isLoading}
+      className="cursor-pointer"
     />
   );
 }

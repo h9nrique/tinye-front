@@ -16,7 +16,7 @@ export default async function Navbar() {
             <FaLink className="text-blue-300 mt-1" size={20} />
             <h1 className="text-2xl font-bold text-cyan-950">Tinye.me</h1>
           </Link>
-          <div className="flex items-center gap-x-2">
+          <div className="flex items-center gap-x-4">
             <Link href="/profile">Meus links</Link>
             <LogoutButton />
           </div>

@@ -7,7 +7,7 @@ import LinkListOrdered from "./LinkListOrdered";
 const getLinks = async () => {
   const response = await getLinksAction();
   if (response.type === HttpResponseType.ERROR) {
-    errorHandler(response);
+    await errorHandler(response);
     return [] as LinkType[];
   }
 
