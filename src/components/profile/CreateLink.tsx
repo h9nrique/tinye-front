@@ -1,24 +1,23 @@
+"use client";
+
 import React from "react";
-import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { Input } from "../ui/input";
+import { toast } from "sonner";
+import {
+  createShortLinkSchema,
+  CreateShortLinkSchema,
+} from "../HomePage/CreateLinkInput";
 import { createShortLinkAction } from "@/actions/createShortLinkAction";
 import { HttpResponseType } from "@/types/ResponseTypes";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { LinkType } from "@/types/links/LinkType";
-import { toast } from "sonner";
 
-export const createShortLinkSchema = z.object({
-  originalLink: z.string().url("URL inválida"),
-});
-
-export type CreateShortLinkSchema = z.infer<typeof createShortLinkSchema>;
-
-export default function CreateLinkInput({
-  addLink,
+export default function CreateLink({
+  setOrderedLinksList,
 }: {
-  addLink: (links: LinkType) => void;
+  setOrderedLinksList: React.Dispatch<React.SetStateAction<LinkType[]>>;
 }) {
   const {
     handleSubmit,
@@ -39,10 +38,10 @@ export default function CreateLinkInput({
     }
 
     if (response.type === HttpResponseType.SUCCESS) {
-      const responseData = response.data as LinkType;
-      addLink(responseData);
+      const newLink = response.data as LinkType;
       reset();
       toast.success("Link criado com sucesso");
+      return setOrderedLinksList((prevLinks) => [...prevLinks, newLink]);
     }
   };
 
