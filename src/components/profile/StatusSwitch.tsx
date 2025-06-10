@@ -4,6 +4,7 @@ import { LinkType } from "@/types/links/LinkType";
 import { changeLinkActiveAction } from "@/actions/changeLinkActiveAction";
 import { HttpResponseType } from "@/types/ResponseTypes";
 import { toast } from "sonner";
+import { errorHandler } from "@/utils/errorHandler";
 
 type StatusSwitchProps = {
   link: LinkType;
@@ -24,6 +25,7 @@ export default function StatusSwitch({
     const response = await changeLinkActiveAction({ id });
     if (response.type === HttpResponseType.ERROR) {
       setIsLoading(false);
+      errorHandler(response);
       return toast.error("Não foi possível desativar o link", {
         description: "Tente novamente mais tarde",
       });

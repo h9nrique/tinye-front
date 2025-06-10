@@ -15,6 +15,7 @@ export async function loginAction(data: LoginSchema) {
   try {
     const response = await api.post("/auth/login", data);
     const cookieStore = await cookies();
+    cookieStore.delete("token");
     cookieStore.set("token", response.data.token, {
       secure: true,
       httpOnly: true,

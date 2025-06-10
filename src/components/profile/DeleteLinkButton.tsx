@@ -18,6 +18,7 @@ import { deleteLinkAction } from "@/actions/deleteLinkAction";
 import { HttpResponseType } from "@/types/ResponseTypes";
 import { toast } from "sonner";
 import { LinkType } from "@/types/links/LinkType";
+import { errorHandler } from "@/utils/errorHandler";
 
 type DeleteLinkButtonProps = {
   id: string;
@@ -32,6 +33,7 @@ export default function DeleteLinkButton({
     const response = await deleteLinkAction({ id });
 
     if (response.type === HttpResponseType.ERROR) {
+      errorHandler(response);
       return toast.error("Não foi possível deletar o link", {
         description: "Tente novamente mais tarde",
       });

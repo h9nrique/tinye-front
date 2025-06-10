@@ -14,9 +14,6 @@ export default function LinkListOrdered({
 
   return orderedLinksList
     .sort((a, b) => {
-      if (a.active !== b.active) {
-        return a.active ? -1 : 1;
-      }
       const dateA = new Date(a.createdAt).getTime();
       const dateB = new Date(b.createdAt).getTime();
       return dateB - dateA;
