@@ -2,7 +2,13 @@ import React from "react";
 import { LinkType } from "@/types/links/LinkType";
 import LinkCard from "./LinkCard";
 
-export default function LastShortLinksList({ links }: { links: LinkType[] }) {
+export default function LastShortLinksList({
+  links,
+  removeLink,
+}: {
+  links: LinkType[];
+  removeLink: (id: string) => void;
+}) {
   return (
     <div className="w-full rounded-md md:border-2 border-input md:p-6">
       <h3 className="font-bold text-center text-gray-700 mt-4 md:mt-0 mb-2 md:mb-6">
@@ -14,7 +20,7 @@ export default function LastShortLinksList({ links }: { links: LinkType[] }) {
       )}
 
       {links.slice(0, 9).map((link) => {
-        return <LinkCard key={link.id} link={link} />;
+        return <LinkCard key={link.id} link={link} removeLink={removeLink} />;
       })}
     </div>
   );

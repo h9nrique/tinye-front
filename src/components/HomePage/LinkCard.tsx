@@ -5,8 +5,15 @@ import FaviconLinks from "./FaviconLinks";
 import { Button } from "../ui/button";
 import { FaCopy } from "react-icons/fa6";
 import { toast } from "sonner";
+import DeleteLastLinks from "./DeleteLastLinks";
 
-export default function LinkCard({ link }: { link: LinkType }) {
+export default function LinkCard({
+  link,
+  removeLink,
+}: {
+  link: LinkType;
+  removeLink: (id: string) => void;
+}) {
   const [copied, setCopied] = useState(false);
   const completeLink = "http://localhost:3000/" + link.shortLink;
 
@@ -50,19 +57,22 @@ export default function LinkCard({ link }: { link: LinkType }) {
           </Link>
         </div>
       </div>
-      <Button
-        onClick={copyToClipboard}
-        className="w-full md:w-auto"
-        disabled={copied}
-      >
-        {copied ? (
-          "Copiado!"
-        ) : (
-          <>
-            <FaCopy /> Copiar
-          </>
-        )}
-      </Button>
+      <div className="flex items-center">
+        <Button
+          onClick={copyToClipboard}
+          className="w-full md:w-auto"
+          disabled={copied}
+        >
+          {copied ? (
+            "Copiado!"
+          ) : (
+            <>
+              <FaCopy /> Copiar
+            </>
+          )}
+        </Button>
+        <DeleteLastLinks id={link.id} removeLink={removeLink} />
+      </div>
     </div>
   );
 }
