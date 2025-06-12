@@ -52,6 +52,7 @@ export default function DeleteLinkButton({
       <AlertDialogTrigger asChild>
         <Button variant="destructive">
           <FaTrash />
+          <p className="md:hidden block">Deletar</p>
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent className="bg-white gap-6">

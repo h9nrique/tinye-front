@@ -37,8 +37,8 @@ export default function CopyLinkButton({
   return (
     <Button
       onClick={copyToClipboard}
-      className="md:w-auto"
       disabled={copied || !link.active}
+      className="flex-1"
     >
       {copied ? (
         "Copiado!"

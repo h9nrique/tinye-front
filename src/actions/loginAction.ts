@@ -12,10 +12,11 @@ import { AxiosError } from "axios";
 import { cookies } from "next/headers";
 
 export async function loginAction(data: LoginSchema) {
+  const cookieStore = await cookies();
+  cookieStore.delete("token");
+
   try {
     const response = await api.post("/auth/login", data);
-    const cookieStore = await cookies();
-    cookieStore.delete("token");
     cookieStore.set("token", response.data.token, {
       secure: true,
       httpOnly: true,
