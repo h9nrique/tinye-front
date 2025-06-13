@@ -1,13 +1,9 @@
 import React from "react";
 import { FaLink } from "react-icons/fa6";
 import Link from "next/link";
-import { cookies } from "next/headers";
 import LogoutButton from "./LogoutButton";
 
-export default async function Navbar() {
-  const CookiesStore = await cookies();
-  const token = CookiesStore.get("token");
-
+export default async function Navbar({ token }: { token: string | null }) {
   if (token)
     return (
       <nav className="w-full py-2 bg-white border-b border-gray-200 mb-8">

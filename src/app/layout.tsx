@@ -5,6 +5,7 @@ import { Toaster } from "sonner";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/navbar/Footer";
 import React from "react";
+import { cookies } from "next/headers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,17 +22,21 @@ export const metadata: Metadata = {
   description: "Profissionalize seus links. Simples, rápido e eficiente.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const CookiesStore = await cookies();
+  const tokenCookie = CookiesStore.get("token");
+  const token = tokenCookie ? tokenCookie.value : null;
+
   return (
     <html lang="pt-Br">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-dvh`}
       >
-        <Navbar />
+        <Navbar token={token} />
         <main className="flex-1">{children}</main>
         <Footer />
         <Toaster />

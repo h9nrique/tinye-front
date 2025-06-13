@@ -32,8 +32,8 @@ export default function CreateLink({
     const response = await createShortLinkAction(data);
 
     if (response.type === HttpResponseType.ERROR) {
-      toast.error("Erro ao encurtar seu link", {
-        description: response.errorMessage,
+      toast.error(response.errorMessage, {
+        description: response.errorDescription,
       });
     }
 
