@@ -1,14 +1,21 @@
 import React from "react";
-import CreateLinkInput from "./CreateLinkInput";
+import LinksSection from "./LinksSection";
+import { FaLink } from "react-icons/fa6";
+import Container from "../ui/Container";
 
 export default function LinksHomePage() {
   return (
-    <div className="flex flex-col items-center min-h-svh">
-      <h1 className="text-5xl font-bold text-cyan-950 mt-48 mb-4">Tinye.me</h1>
-      <h3 className="text-xl font-medium mb-6 text-gray-500">
+    <Container>
+      <div className="flex gap-x-2 items-center mb-4 m-auto">
+        <FaLink className="text-blue-300 mt-1" size={40} />
+        <h1 className="text-5xl font-bold text-cyan-950">Tinye.me</h1>
+      </div>
+
+      <h3 className="text-xl text-center font-medium mb-6 px-4 text-gray-500 text-pretty">
         Profissionalize seus links. Simples, rápido e eficiente.
       </h3>
-      <CreateLinkInput />
-    </div>
+
+      <LinksSection />
+    </Container>
   );
 }
