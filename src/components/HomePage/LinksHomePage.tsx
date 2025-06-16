@@ -14,6 +14,7 @@ export default function LinksHomePage() {
       <h3 className="text-xl text-center font-medium mb-6 px-4 text-gray-500 text-pretty">
         Profissionalize seus links. Simples, rápido e eficiente.
       </h3>
+
       <LinksSection />
     </Container>
   );
