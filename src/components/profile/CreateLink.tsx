@@ -48,7 +48,7 @@ export default function CreateLink({
   return (
     <form
       onSubmit={handleSubmit(createShortLink)}
-      className="flex flex-col md:flex-row w-full gap-2 justify-center items-center mb-4"
+      className="flex flex-col md:flex-row w-full gap-2 justify-center items-center mb-8 md:mb-4"
     >
       <Input
         placeholder="Cole seu link para encurtar"

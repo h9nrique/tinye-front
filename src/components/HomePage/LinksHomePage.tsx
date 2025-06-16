@@ -6,7 +6,7 @@ import Container from "../ui/Container";
 export default function LinksHomePage() {
   return (
     <Container>
-      <div className="flex gap-x-2 items-center mb-4 m-auto">
+      <div className="flex gap-x-2 items-center mb-4 mx-auto">
         <FaLink className="text-blue-300 mt-1" size={40} />
         <h1 className="text-5xl font-bold text-cyan-950">Tinye.me</h1>
       </div>

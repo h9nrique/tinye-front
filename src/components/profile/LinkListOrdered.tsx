@@ -22,7 +22,7 @@ export default function LinkListOrdered({
   const reachedMaximunQuantity = orderedLinksList.length >= 10;
 
   return (
-    <div>
+    <div className="w-full">
       <section>
         <h1 className="text-2xl font-bold mb-2 ml-1">Criar um novo link</h1>
         <CreateLink setOrderedLinksList={setOrderedLinksList} />

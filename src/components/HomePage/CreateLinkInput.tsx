@@ -48,7 +48,7 @@ export default function CreateLinkInput({
   };
 
   return (
-    <div className="flex flex-col items-center mb-4 font-normal text-gray-400">
+    <div className="w-full flex flex-col items-center mb-4 font-normal text-gray-400">
       <form
         onSubmit={handleSubmit(createShortLink)}
         className="flex flex-col md:flex-row w-full gap-2 justify-center items-center mb-2"
@@ -62,7 +62,7 @@ export default function CreateLinkInput({
           Encurtar Link
         </Button>
       </form>
-      <p>
+      <p className="text-center">
         <Link
           href="/login"
           className="hover:border-gray-400 border-b border-transparent duration-200 transition-all font-medium"
