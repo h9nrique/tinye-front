@@ -15,7 +15,8 @@ export default function LinkCard({
   removeLink: (id: string) => void;
 }) {
   const [copied, setCopied] = useState(false);
-  const completeLink = "http://localhost:3000/" + link.shortLink;
+  const frontUrl = process.env.NEXT_PUBLIC_FRONTEND_URL;
+  const completeLink = frontUrl + link.shortLink;
 
   const copyToClipboard = () => {
     navigator.clipboard

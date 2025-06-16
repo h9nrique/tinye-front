@@ -18,7 +18,8 @@ export default function LinkCardProfile({
   link,
   setOrderedLinksList,
 }: LinkCardProfileProps) {
-  const completeLink = "http://localhost:3000/" + link.shortLink;
+  const frontUrl = process.env.NEXT_PUBLIC_FRONTEND_URL;
+  const completeLink = frontUrl + link.shortLink;
 
   return (
     <div
