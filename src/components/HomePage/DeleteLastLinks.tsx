@@ -1,5 +1,6 @@
 import React from "react";
-import { IoIosClose } from "react-icons/io";
+import { Button } from "../ui/button";
+import { RiCloseLargeFill } from "react-icons/ri";
 
 export default function DeleteLastLinks({
   id,
@@ -9,11 +10,12 @@ export default function DeleteLastLinks({
   removeLink: (id: string) => void;
 }) {
   return (
-    <button
+    <Button
       onClick={() => removeLink(id)}
-      className="cursor-pointer ml-1 md:ml-2 hover:text-red-600 transition-colors duration-200"
+      variant="outline"
+      className="flex-1 md:w-auto hover:text-red-600"
     >
-      <IoIosClose size={24} />
-    </button>
+      <RiCloseLargeFill /> Remover
+    </Button>
   );
 }

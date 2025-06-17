@@ -58,10 +58,10 @@ export default function LinkCard({
           </Link>
         </div>
       </div>
-      <div className="flex items-center">
+      <div className="flex items-center gap-x-2">
         <Button
           onClick={copyToClipboard}
-          className="w-full md:w-auto"
+          className="flex-1 md:w-auto"
           disabled={copied}
         >
           {copied ? (

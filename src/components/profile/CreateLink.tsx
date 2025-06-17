@@ -14,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LinkType } from "@/types/links/LinkType";
 import { AiOutlineLoading } from "react-icons/ai";
+import Hint from "../ui/Hint";
 
 export default function CreateLink({
   setLinkList,
@@ -24,7 +25,7 @@ export default function CreateLink({
     handleSubmit,
     register,
     reset,
-    formState: { isSubmitting },
+    formState: { isSubmitting, errors },
   } = useForm<CreateShortLinkSchema>({
     resolver: zodResolver(createShortLinkSchema),
   });
@@ -39,29 +40,38 @@ export default function CreateLink({
 
     if (response.type === HttpResponseType.SUCCESS) {
       const newLink = response.data as LinkType;
-      reset();
       toast.success("Link criado com sucesso");
-      return setLinkList((prevLinks) => [...prevLinks, newLink]);
+      setLinkList((prevLinks) => [...prevLinks, newLink]);
+      setTimeout(() => {
+        reset();
+      }, 0);
     }
   };
 
   return (
     <form
       onSubmit={handleSubmit(createShortLink)}
-      className="flex flex-col md:flex-row w-full gap-2 justify-center items-center mb-8 md:mb-4"
+      className="w-full mb-8 md:mb-4"
     >
-      <Input
-        placeholder="Cole seu link para encurtar"
-        className="p-6 max-h-12"
-        {...register("originalLink")}
-      />
-      <Button className="p-6 px-8 w-full md:w-36" disabled={isSubmitting}>
-        {isSubmitting ? (
-          <AiOutlineLoading className="animate-spin" />
-        ) : (
-          "Encurtar Link"
-        )}
-      </Button>
+      <div className="flex flex-col md:flex-row gap-2 justify-center items-center">
+        <Input
+          placeholder="Cole seu link para encurtar"
+          className="p-6 max-h-12"
+          {...register("originalLink")}
+        />
+        <Button
+          type="submit"
+          className="p-6 px-8 w-full md:w-36"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? (
+            <AiOutlineLoading className="animate-spin" />
+          ) : (
+            "Encurtar Link"
+          )}
+        </Button>
+      </div>
+      {errors.originalLink && <Hint>{errors.originalLink.message}</Hint>}
     </form>
   );
 }

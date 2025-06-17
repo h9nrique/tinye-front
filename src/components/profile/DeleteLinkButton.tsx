@@ -35,7 +35,6 @@ export default function DeleteLinkButton({
   const deleteLink = async () => {
     setIsLoading(true);
     const response = await deleteLinkAction({ id });
-    await new Promise((resolve) => setTimeout(resolve, 3000));
     if (response.type === HttpResponseType.ERROR) {
       errorHandler(response);
       return toast.error("Não foi possível deletar o link", {
