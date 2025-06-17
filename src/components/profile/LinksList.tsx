@@ -20,9 +20,5 @@ const getLinks = async () => {
 export default async function LinksList() {
   const links = await getLinks();
 
-  return links ? (
-    <LinkListOrdered orderedLinks={links} />
-  ) : (
-    "Você ainda não tem links criados"
-  );
+  return links && <LinkListOrdered orderedLinks={links} />;
 }

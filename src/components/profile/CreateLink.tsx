@@ -31,7 +31,6 @@ export default function CreateLink({
 
   const createShortLink = async (data: CreateShortLinkSchema) => {
     const response = await createShortLinkAction(data);
-
     if (response.type === HttpResponseType.ERROR) {
       toast.error(response.errorMessage, {
         description: response.errorDescription,

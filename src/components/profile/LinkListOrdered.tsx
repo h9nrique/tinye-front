@@ -54,21 +54,27 @@ export default function LinkListOrdered({
           </div>
         </div>
 
-        {orderedLinksList
-          .sort((a, b) => {
-            const dateA = new Date(a.createdAt).getTime();
-            const dateB = new Date(b.createdAt).getTime();
-            return dateB - dateA;
-          })
-          .map((link) => {
-            return (
-              <LinkCardProfile
-                key={link.id}
-                link={link}
-                setOrderedLinksList={setOrderedLinksList}
-              />
-            );
-          })}
+        {orderedLinksList.length > 0 ? (
+          orderedLinksList
+            .sort((a, b) => {
+              const dateA = new Date(a.createdAt).getTime();
+              const dateB = new Date(b.createdAt).getTime();
+              return dateB - dateA;
+            })
+            .map((link) => {
+              return (
+                <LinkCardProfile
+                  key={link.id}
+                  link={link}
+                  setOrderedLinksList={setOrderedLinksList}
+                />
+              );
+            })
+        ) : (
+          <p className=" text-gray-800 text-center mt-4">
+            Você ainda não tem nenhum link criado!
+          </p>
+        )}
       </section>
     </div>
   );
