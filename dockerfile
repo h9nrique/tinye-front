@@ -3,6 +3,9 @@ FROM node:21-alpine as build
 
 WORKDIR /app
 
+ARG NEXT_PUBLIC_FRONTEND_URL
+ENV NEXT_PUBLIC_FRONTEND_URL=${NEXT_PUBLIC_FRONTEND_URL}
+
 # Instalar dependências com npm
 COPY package*.json ./
 RUN npm install
