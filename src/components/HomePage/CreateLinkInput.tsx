@@ -13,7 +13,7 @@ import { AiOutlineLoading } from "react-icons/ai";
 import Hint from "../ui/Hint";
 
 export const createShortLinkSchema = z.object({
-  originalLink: z.string().regex(/\.[a-zA-Z]{2,}$/, {
+  originalLink: z.string().regex(/\.[a-zA-Z]{2,}(\/|$)?/, {
     message: "Link inválido. Verifique se o link está no formato correto.",
   }),
 });

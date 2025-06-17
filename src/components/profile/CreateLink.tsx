@@ -40,9 +40,11 @@ export default function CreateLink({
 
     if (response.type === HttpResponseType.SUCCESS) {
       const newLink = response.data as LinkType;
-      reset();
       toast.success("Link criado com sucesso");
-      return setLinkList((prevLinks) => [...prevLinks, newLink]);
+      setLinkList((prevLinks) => [...prevLinks, newLink]);
+      setTimeout(() => {
+        reset();
+      }, 50);
     }
   };
 
@@ -57,7 +59,11 @@ export default function CreateLink({
           className="p-6 max-h-12"
           {...register("originalLink")}
         />
-        <Button className="p-6 px-8 w-full md:w-36" disabled={isSubmitting}>
+        <Button
+          type="submit"
+          className="p-6 px-8 w-full md:w-36"
+          disabled={isSubmitting}
+        >
           {isSubmitting ? (
             <AiOutlineLoading className="animate-spin" />
           ) : (
