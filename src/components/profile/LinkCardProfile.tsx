@@ -11,12 +11,12 @@ import StatusSwitch from "./StatusSwitch";
 
 type LinkCardProfileProps = {
   link: LinkType;
-  setOrderedLinksList: React.Dispatch<React.SetStateAction<LinkType[]>>;
+  setLinkList: React.Dispatch<React.SetStateAction<LinkType[]>>;
 };
 
 export default function LinkCardProfile({
   link,
-  setOrderedLinksList,
+  setLinkList,
 }: LinkCardProfileProps) {
   const frontUrl = process.env.NEXT_PUBLIC_FRONTEND_URL;
   const completeLink = frontUrl + link.shortLink;
@@ -31,7 +31,7 @@ export default function LinkCardProfile({
     >
       <div className="flex items-center gap-4 overflow-hidden mb-4 md:mb-0">
         <div className="flex flex-col md:flex-row items-center gap-3">
-          <StatusSwitch link={link} setOrderedLinksList={setOrderedLinksList} />
+          <StatusSwitch link={link} setLinkList={setLinkList} />
           <FaviconLinks originalLink={link.originalLink} />
         </div>
         <div className="flex flex-col overflow-hidden">
@@ -66,10 +66,7 @@ export default function LinkCardProfile({
 
       <div className="flex flex-row-reverse md:flex-row gap-2 ">
         <CopyLinkButton completeLink={completeLink} link={link} />
-        <DeleteLinkButton
-          id={link.id}
-          setOrderedLinksList={setOrderedLinksList}
-        />
+        <DeleteLinkButton id={link.id} setLinkList={setLinkList} />
       </div>
     </div>
   );

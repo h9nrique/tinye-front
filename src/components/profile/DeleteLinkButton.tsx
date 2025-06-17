@@ -23,12 +23,12 @@ import { AiOutlineLoading } from "react-icons/ai";
 
 type DeleteLinkButtonProps = {
   id: string;
-  setOrderedLinksList: React.Dispatch<React.SetStateAction<LinkType[]>>;
+  setLinkList: React.Dispatch<React.SetStateAction<LinkType[]>>;
 };
 
 export default function DeleteLinkButton({
   id,
-  setOrderedLinksList,
+  setLinkList,
 }: DeleteLinkButtonProps) {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -45,7 +45,7 @@ export default function DeleteLinkButton({
     }
 
     if (response.type === HttpResponseType.SUCCESS) {
-      setOrderedLinksList((prevLinks) => {
+      setLinkList((prevLinks) => {
         return prevLinks.filter((link) => link.id !== id);
       });
       toast.success("Link deletado com sucesso");

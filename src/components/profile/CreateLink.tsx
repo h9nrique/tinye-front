@@ -16,9 +16,9 @@ import { LinkType } from "@/types/links/LinkType";
 import { AiOutlineLoading } from "react-icons/ai";
 
 export default function CreateLink({
-  setOrderedLinksList,
+  setLinkList,
 }: {
-  setOrderedLinksList: React.Dispatch<React.SetStateAction<LinkType[]>>;
+  setLinkList: React.Dispatch<React.SetStateAction<LinkType[]>>;
 }) {
   const {
     handleSubmit,
@@ -41,7 +41,7 @@ export default function CreateLink({
       const newLink = response.data as LinkType;
       reset();
       toast.success("Link criado com sucesso");
-      return setOrderedLinksList((prevLinks) => [...prevLinks, newLink]);
+      return setLinkList((prevLinks) => [...prevLinks, newLink]);
     }
   };
 
