@@ -37,7 +37,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-dvh`}
       >
         <Navbar token={token} />
-        <main className="flex-1">{children}</main>
+        {children}
         <Footer />
         <Toaster />
       </body>

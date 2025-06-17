@@ -8,13 +8,10 @@ import { errorHandler } from "@/utils/errorHandler";
 
 type StatusSwitchProps = {
   link: LinkType;
-  setOrderedLinksList: React.Dispatch<React.SetStateAction<LinkType[]>>;
+  setLinkList: React.Dispatch<React.SetStateAction<LinkType[]>>;
 };
 
-export default function StatusSwitch({
-  link,
-  setOrderedLinksList,
-}: StatusSwitchProps) {
+export default function StatusSwitch({ link, setLinkList }: StatusSwitchProps) {
   const [checked, setChecked] = useState(link.active);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,7 +32,7 @@ export default function StatusSwitch({
 
       setChecked(updatedLink.active);
       setIsLoading(false);
-      setOrderedLinksList((prevLinks) => {
+      setLinkList((prevLinks) => {
         return prevLinks.map((l) => {
           if (l.id === link.id) {
             return { ...l, active: updatedLink.active };

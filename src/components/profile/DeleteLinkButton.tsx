@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { FaTrash } from "react-icons/fa6";
 import {
@@ -19,39 +19,49 @@ import { HttpResponseType } from "@/types/ResponseTypes";
 import { toast } from "sonner";
 import { LinkType } from "@/types/links/LinkType";
 import { errorHandler } from "@/utils/errorHandler";
+import { AiOutlineLoading } from "react-icons/ai";
 
 type DeleteLinkButtonProps = {
   id: string;
-  setOrderedLinksList: React.Dispatch<React.SetStateAction<LinkType[]>>;
+  setLinkList: React.Dispatch<React.SetStateAction<LinkType[]>>;
 };
 
 export default function DeleteLinkButton({
   id,
-  setOrderedLinksList,
+  setLinkList,
 }: DeleteLinkButtonProps) {
-  const deleteLink = async () => {
-    const response = await deleteLinkAction({ id });
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const deleteLink = async () => {
+    setIsLoading(true);
+    const response = await deleteLinkAction({ id });
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     if (response.type === HttpResponseType.ERROR) {
       errorHandler(response);
       return toast.error("Não foi possível deletar o link", {
         description: "Tente novamente mais tarde",
       });
+      setIsLoading(false);
     }
 
     if (response.type === HttpResponseType.SUCCESS) {
-      setOrderedLinksList((prevLinks) => {
+      setLinkList((prevLinks) => {
         return prevLinks.filter((link) => link.id !== id);
       });
       toast.success("Link deletado com sucesso");
+      setIsLoading(false);
     }
   };
 
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive">
-          <FaTrash />
+        <Button variant="destructive" disabled={isLoading}>
+          {isLoading ? (
+            <AiOutlineLoading className="animate-spin" />
+          ) : (
+            <FaTrash />
+          )}
           <p className="md:hidden block">Deletar</p>
         </Button>
       </AlertDialogTrigger>

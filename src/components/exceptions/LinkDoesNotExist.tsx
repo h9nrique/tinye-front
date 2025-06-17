@@ -1,10 +1,11 @@
 import Link from "next/link";
 import React from "react";
 import { FaLinkSlash } from "react-icons/fa6";
+import Container from "../ui/Container";
 
 export default function LinkDoesNotExist() {
   return (
-    <div className="w-full min-h-svh flex flex-col items-center justify-center px-8">
+    <Container className="w-full flex flex-1 flex-col justify-center">
       <FaLinkSlash size={80} className="text-gray-400 mb-8" />
       <h1 className="text-4xl font-bold text-gray-700 mb-4">Link não existe</h1>
       <p className="font-medium text-gray-700 text-center mb-4">
@@ -16,6 +17,6 @@ export default function LinkDoesNotExist() {
       >
         Voltar a página inicial
       </Link>
-    </div>
+    </Container>
   );
 }
