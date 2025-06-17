@@ -44,7 +44,7 @@ export default function CreateLink({
       setLinkList((prevLinks) => [...prevLinks, newLink]);
       setTimeout(() => {
         reset();
-      }, 50);
+      }, 0);
     }
   };
 

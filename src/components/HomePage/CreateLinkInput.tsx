@@ -46,8 +46,10 @@ export default function CreateLinkInput({
     if (response.type === HttpResponseType.SUCCESS) {
       const responseData = response.data as LinkType;
       addLink(responseData);
-      reset();
       toast.success("Link criado com sucesso");
+      setTimeout(() => {
+        reset();
+      }, 0);
     }
   };
 
@@ -68,7 +70,6 @@ export default function CreateLinkInput({
             )}
           </Button>
         </div>
-
         {errors.originalLink && <Hint>{errors.originalLink.message}</Hint>}
       </form>
       <p className="text-center text-gray-400">
