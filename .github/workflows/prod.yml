@@ -28,7 +28,7 @@ jobs:
         run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
 
       - name: Build docker image
-        run: docker build -t h9nrique/tinyefront .
+        run: docker build --build-arg NEXT_PUBLIC_FRONTEND_URL=tinye.me/ -t h9nrique/tinyefront .
 
       - name: Push image docker
         run: docker push h9nrique/tinyefront
