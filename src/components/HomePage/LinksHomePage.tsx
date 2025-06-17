@@ -6,12 +6,12 @@ import Container from "../ui/Container";
 export default function LinksHomePage() {
   return (
     <Container>
-      <div className="flex gap-x-2 items-center mb-4 mx-auto">
+      <div className="flex gap-x-2 items-center mb-2 mx-auto mt-8 md:mt-4">
         <FaLink className="text-blue-300 mt-1" size={40} />
         <h1 className="text-5xl font-bold text-cyan-950">Tinye.me</h1>
       </div>
 
-      <h3 className="text-xl text-center font-medium mb-6 px-4 text-gray-500 text-pretty">
+      <h3 className="text-xl text-center font-medium mb-8 md:mb-4 px-4 text-gray-500 text-pretty">
         Profissionalize seus links. Simples, rápido e eficiente.
       </h3>
 

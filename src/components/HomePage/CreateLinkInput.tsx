@@ -52,7 +52,7 @@ export default function CreateLinkInput({
   };
 
   return (
-    <div className="w-full flex flex-col items-center mb-4 font-normal">
+    <div className="w-full flex flex-col items-center mb-8 font-normal">
       <form onSubmit={handleSubmit(createShortLink)} className="w-full mb-2">
         <div className="flex flex-col md:flex-row gap-2 justify-center items-center mb-1">
           <Input
