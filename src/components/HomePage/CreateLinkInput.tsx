@@ -9,6 +9,7 @@ import { HttpResponseType } from "@/types/ResponseTypes";
 import { LinkType } from "@/types/links/LinkType";
 import { toast } from "sonner";
 import Link from "next/link";
+import { AiOutlineLoading } from "react-icons/ai";
 
 export const createShortLinkSchema = z.object({
   originalLink: z.string().url("URL inválida"),
@@ -58,8 +59,12 @@ export default function CreateLinkInput({
           className="p-6 max-h-12"
           {...register("originalLink")}
         />
-        <Button className="p-6 px-8 w-full md:w-auto" disabled={isSubmitting}>
-          Encurtar Link
+        <Button className="p-6 px-8 w-full md:w-36" disabled={isSubmitting}>
+          {isSubmitting ? (
+            <AiOutlineLoading className="animate-spin" />
+          ) : (
+            "Encurtar Link"
+          )}
         </Button>
       </form>
       <p className="text-center">

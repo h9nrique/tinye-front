@@ -14,10 +14,12 @@ import { createNewAccountAction } from "@/actions/createNewAccountAction";
 import { HttpResponseType } from "@/types/ResponseTypes";
 import { toast } from "sonner";
 import { redirect } from "next/navigation";
+import { AiOutlineLoading } from "react-icons/ai";
 
 export default function RegisterForm() {
   const [password, setPassword] = useState<string>("");
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const {
     register,
@@ -30,16 +32,18 @@ export default function RegisterForm() {
   const { onChange: hookFormOnChange, ...inputProps } = register("password");
 
   const createNewAccount = async (data: RegisterSchema) => {
+    setIsLoading(true);
     const response = await createNewAccountAction(data);
-
     if (response.type === HttpResponseType.ERROR) {
       toast.error(response.errorMessage, {
         description: response.errorDescription,
       });
+      setIsLoading(false);
     }
 
     if (response.type === HttpResponseType.SUCCESS) {
       toast.success("Conta criada com sucesso!");
+      setIsLoading(false);
       redirect("/profile");
     }
   };
@@ -95,7 +99,13 @@ export default function RegisterForm() {
           <Hint>{errors.password && errors.password.message}</Hint>
         </div>
         <PasswordValidation password={password} />
-        <Button className="mt-4 py-6">Criar conta</Button>
+        <Button className="mt-4 py-6" disabled={isLoading}>
+          {isLoading ? (
+            <AiOutlineLoading className="animate-spin" />
+          ) : (
+            "Criar conta"
+          )}
+        </Button>
       </form>
     </div>
   );

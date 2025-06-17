@@ -13,6 +13,7 @@ import { HttpResponseType } from "@/types/ResponseTypes";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LinkType } from "@/types/links/LinkType";
+import { AiOutlineLoading } from "react-icons/ai";
 
 export default function CreateLink({
   setOrderedLinksList,
@@ -55,8 +56,12 @@ export default function CreateLink({
         className="p-6 max-h-12"
         {...register("originalLink")}
       />
-      <Button className="p-6 px-8 w-full md:w-auto" disabled={isSubmitting}>
-        Encurtar Link
+      <Button className="p-6 px-8 w-full md:w-36" disabled={isSubmitting}>
+        {isSubmitting ? (
+          <AiOutlineLoading className="animate-spin" />
+        ) : (
+          "Encurtar Link"
+        )}
       </Button>
     </form>
   );
