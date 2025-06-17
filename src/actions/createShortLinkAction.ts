@@ -8,11 +8,16 @@ import {
   responseError,
   responseSuccess,
 } from "@/types/ResponseTypes";
+import { ensureValidUrl } from "@/utils/ensureValidUrl";
 import { AxiosError } from "axios";
 
 export async function createShortLinkAction(data: CreateShortLinkSchema) {
+  const validURL: CreateShortLinkSchema = {
+    originalLink: ensureValidUrl(data.originalLink),
+  };
+
   try {
-    const response = await api.post("/link", data);
+    const response = await api.post("/link", validURL);
     return responseSuccess<LinkType>(response);
   } catch (error) {
     const axiosError = error as AxiosError<ErrorResponse>;
