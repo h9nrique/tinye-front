@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔗 Tinye.me - Frontend
 
-## Getting Started
+Aplicação frontend do projeto [Tinye.me](https://tinye.me), um encurtador de links com painel de gerenciamento, feito em **Next.js** com **TypeScript** e estilizado com **Tailwind CSS**.
 
-First, run the development server:
+Este repositório contém a interface web para cadastro, login, criação e gerenciamento dos links curtos, consumindo a API backend.
+
+---
+
+## [Link do repositório do Backend](https://github.com/h9nrique/tinye-backend)
+
+---
+
+## 🚀 Funcionalidades
+
+- Tela de cadastro e login de usuários
+- Interface para criação de links curtos
+- Listagem, ativação/desativação e remoção de links
+- Visualização de informações detalhadas dos links
+- Armazenamento e uso do token JWT para autenticação
+- Layout responsivo para desktop e mobile
+
+---
+
+## 🛠️ Tecnologias
+
+- **Next.js**
+- **TypeScript**
+- **Tailwind CSS** – estilização rápida e responsiva
+- **Axios** – para requisições HTTP à API
+- **React Hook Form** – gerenciamento e validação de formulários
+- **Zod** – validação de schemas de dados
+
+---
+
+## ⚙️ Como rodar localmente
+
+### Pré-requisitos
+
+- Node.js (versão 18+ recomendada)
+- Yarn ou npm
+- Backend Tinye.me rodando (configurar URL da API no `.env.local`)
+
+### Passo a passo
 
 ```bash
-npm run dev
-# or
+# Clone o repositório
+git clone https://github.com/h9nrique/tinye-front.git
+cd tinye-front
+
+# Instale as dependências
+yarn install
+# ou
+npm install
+
+# Crie um arquivo .env com a variável de ambiente da API
+API_URL="http://localhost:8080/api/v1"
+NEXT_PUBLIC_FRONTEND_URL="localhost:3000/"
+
+# Rode em modo desenvolvimento
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# ou
+npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+👨‍💻 Autor
+Bruno Henrique Pereira  
+[LinkedIn](https://www.linkedin.com/in/h9nrique/) • [GitHub](https://github.com/h9nrique) • [Portfólio](https://h9nrique.com.br/pt-BR)
